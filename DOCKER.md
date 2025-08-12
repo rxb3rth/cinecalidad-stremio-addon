@@ -57,6 +57,15 @@ The following environment variables can be configured:
 
 The Docker image is automatically built and pushed to GitHub Container Registry using GitHub Actions.
 
+### GitHub Actions Workflows
+
+Two workflows are available:
+
+1. **`docker.yml`** - Full workflow with build attestations and security features
+2. **`docker-simple.yml`** - Simplified workflow without attestations (backup option)
+
+The main workflow includes attestations for supply chain security but requires specific repository permissions. If you encounter ID token issues, the simple workflow provides a reliable fallback.
+
 ### Available Tags
 
 - `latest` - Latest stable release from main branch
@@ -188,6 +197,21 @@ spec:
    pnpm install
    git add pnpm-lock.yaml
    git commit -m "update lockfile"
+   ```
+
+5. **GitHub Actions ID token issues**
+   ```bash
+   # If the main workflow fails with ID token errors, the repository may need:
+   # - Actions permissions to be enabled in repository settings
+   # - Attestations to be enabled in repository security settings
+   # - Or use the simplified workflow without attestations
+   ```
+
+6. **Repository permissions for attestations**
+   ```bash
+   # To enable attestations, ensure your repository has:
+   # - Settings > Actions > General > Workflow permissions set to "Read and write"
+   # - Settings > Code security and analysis > Attestations enabled
    ```
 
 ### Logs
