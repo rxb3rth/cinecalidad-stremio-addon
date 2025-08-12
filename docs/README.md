@@ -8,10 +8,10 @@ La página está disponible en GitHub Pages: `https://rxb3rth.github.io/cinecali
 
 ## 📋 Información del Addon
 
-- **Servidor**: https://cinecalidad-stremio-addon-latest.onrender.com
-- **Manifest**: https://cinecalidad-stremio-addon-latest.onrender.com/manifest.json
 - **Tipo**: Addon de películas y series en español
 - **Calidad**: HD / Full HD
+- **Idioma**: Español (Latino y Castellano)
+- **Plataforma**: Stremio
 
 ## 🚀 Características de la Página
 
@@ -20,7 +20,7 @@ La página está disponible en GitHub Pages: `https://rxb3rth.github.io/cinecali
 - **Instalación con un clic**: Botón directo para instalar en Stremio
 - **Configuración manual**: Instrucciones paso a paso
 - **Copia automática**: URLs se copian al portapapeles fácilmente
-- **Estado del servidor**: Verificación en tiempo real
+- **Estado en vivo**: Verificación de disponibilidad en tiempo real
 - **Responsive**: Compatible con móviles y desktop
 - **PWA Ready**: Puede funcionar como aplicación web
 
@@ -67,14 +67,14 @@ docs/
 
 ## 🔧 Personalización
 
-### Cambiar URL del Servidor
+### Configurar URLs del Addon
 
-Para cambiar la URL del servidor, edita el archivo `docs/js/main.js`:
+Para personalizar las URLs del addon, edita el archivo `docs/js/main.js`:
 
 ```javascript
 const CONFIG = {
-    SERVER_URL: 'https://tu-servidor.com',
-    MANIFEST_URL: 'https://tu-servidor.com/manifest.json',
+    SERVER_URL: 'https://tu-addon.com',
+    MANIFEST_URL: 'https://tu-addon.com/manifest.json',
     // ...
 };
 ```
@@ -108,9 +108,9 @@ function trackEvent(eventName, properties = {}) {
 
 ## 📊 Funcionalidades Avanzadas
 
-### Verificación de Estado del Servidor
+### Verificación de Estado en Tiempo Real
 
-- Verifica cada 30 segundos si el servidor está en línea
+- Verifica cada 30 segundos si el addon está disponible
 - Indicador visual del estado (en línea/desconectado/verificando)
 - Reintentos automáticos cuando la conexión se restaura
 
@@ -155,16 +155,16 @@ function trackEvent(eventName, properties = {}) {
 
 ## 📝 Mantenimiento
 
-### Actualizar URL del Servidor
+### Actualizar URLs del Addon
 
-Si cambias la URL de tu servidor, actualiza:
+Si cambias las URLs de tu addon, actualiza:
 - `CONFIG.SERVER_URL` y `CONFIG.MANIFEST_URL` en `js/main.js`
 - Los enlaces en `index.html`
 
 ### Verificar Enlaces
 
 Periódicamente verifica que:
-- El servidor esté funcionando correctamente
+- El addon esté funcionando correctamente
 - Los enlaces de instalación funcionen
 - La página sea accesible desde diferentes dispositivos
 
