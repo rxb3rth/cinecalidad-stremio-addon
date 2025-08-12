@@ -4,14 +4,19 @@ FROM node:20-alpine
 # Set the working directory in the container
 WORKDIR /app
 
-# Install pnpm globally
-RUN npm install -g pnpm@8
+# Install pnpm globally (use version 9 to match lockfile)
+RUN npm install -g pnpm@9
 
 # Copy package.json and pnpm-lock.yaml (if available)
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
+COPY pnpm-lock.yaml* ./
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile --prod
+# Install dependencies with fallback for lockfile compatibility
+RUN if [ -f pnpm-lock.yaml ]; then \
+        pnpm install --frozen-lockfile --prod; \
+    else \
+        pnpm install --prod; \
+    fi
 
 # Copy the rest of the application code
 COPY . .
