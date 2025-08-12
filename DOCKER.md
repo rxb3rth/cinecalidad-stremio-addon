@@ -178,6 +178,18 @@ spec:
    docker build --no-cache -t cinecalidad-addon .
    ```
 
+4. **pnpm lockfile compatibility issues**
+   ```bash
+   # If you encounter pnpm lockfile version mismatches, use the npm Dockerfile instead
+   docker build -f Dockerfile.npm -t cinecalidad-addon .
+   
+   # Or regenerate the lockfile locally
+   rm pnpm-lock.yaml
+   pnpm install
+   git add pnpm-lock.yaml
+   git commit -m "update lockfile"
+   ```
+
 ### Logs
 
 ```bash
