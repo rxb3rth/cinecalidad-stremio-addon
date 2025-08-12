@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineCalidad - Stremio Addon</title>
+    <meta name="description" content="Addon de Stremio para streaming de películas desde CineCalidad">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e50914">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🎬 CineCalidad</h1>
+                <p>Addon de Stremio</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="hero">
+                <h2>Configurar Addon</h2>
+                <p>Configura tu addon de CineCalidad para Stremio y disfruta de películas en alta calidad.</p>
+            </section>
+
+            <section class="config-section">
+                <div class="card">
+                    <h3>🚀 Instalación Rápida</h3>
+                    <p>Haz clic en el botón para agregar automáticamente el addon a tu Stremio:</p>
+                    <div class="button-group">
+                        <a href="stremio://cinecalidad-stremio-addon-latest.onrender.com/manifest.json"
+                            class="btn btn-primary install-btn">
+                            📺 Instalar en Stremio
+                        </a>
+                        <button class="btn btn-secondary" id="copyUrl">
+                            📋 Copiar URL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>⚙️ Configuración Manual</h3>
+                    <p>Si la instalación automática no funciona, sigue estos pasos:</p>
+                    <ol class="steps">
+                        <li>Abre Stremio en tu dispositivo</li>
+                        <li>Ve a la sección de "Addons"</li>
+                        <li>Haz clic en el ícono de engranaje (⚙️) en la esquina superior derecha</li>
+                        <li>Pega la siguiente URL en el campo "Addon URL":</li>
+                    </ol>
+                    <div class="url-box">
+                        <code id="addonUrl">https://cinecalidad-stremio-addon-latest.onrender.com/manifest.json</code>
+                        <button class="copy-btn" id="copyManualUrl" title="Copiar URL">📋</button>
+                    </div>
+                    <ol class="steps" start="5">
+                        <li>Haz clic en "Install" para añadir el addon</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3>📱 Enlaces Directos</h3>
+                    <div class="link-grid">
+                        <a href="https://cinecalidad-stremio-addon-latest.onrender.com/manifest.json" target="_blank"
+                            class="link-card">
+                            <span class="icon">📄</span>
+                            <span>Ver Manifest</span>
+                        </a>
+                        <a href="https://cinecalidad-stremio-addon-latest.onrender.com" target="_blank"
+                            class="link-card">
+                            <span class="icon">🌐</span>
+                            <span>Servidor API</span>
+                        </a>
+                        <a href="https://github.com/rxb3rth/cinecalidad-stremio-addon" target="_blank"
+                            class="link-card">
+                            <span class="icon">💻</span>
+                            <span>Código Fuente</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="card">
+                    <h3>ℹ️ Información del Addon</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Nombre:</strong>
+                            <span>CineCalidad Addon</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Versión:</strong>
+                            <span>1.0.0</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Tipo:</strong>
+                            <span>Películas y Series</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Idioma:</strong>
+                            <span>Español</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Calidad:</strong>
+                            <span>HD / Full HD</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Estado:</strong>
+                            <span class="status-indicator" id="serverStatus">Verificando...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>❓ Preguntas Frecuentes</h3>
+                    <div class="faq">
+                        <details>
+                            <summary>¿Cómo funciona este addon?</summary>
+                            <p>Este addon se conecta a CineCalidad para obtener enlaces de streaming de películas y
+                                series en español, proporcionando contenido de alta calidad directamente en tu Stremio.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>¿Es gratuito?</summary>
+                            <p>Sí, este addon es completamente gratuito y de código abierto. No requiere registro ni
+                                pagos.</p>
+                        </details>
+                        <details>
+                            <summary>¿Funciona en todos los dispositivos?</summary>
+                            <p>El addon funciona en cualquier dispositivo que tenga Stremio instalado: Windows, Mac,
+                                Linux, Android, iOS, y Smart TVs.</p>
+                        </details>
+                        <details>
+                            <summary>¿Qué hacer si no funciona?</summary>
+                            <p>Verifica que la URL del addon esté correctamente copiada y que tengas conexión a
+                                internet. Si persiste el problema, revisa el estado del servidor más abajo.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 CineCalidad Stremio Addon. Proyecto de código abierto.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/rxb3rth/cinecalidad-stremio-addon" target="_blank">GitHub</a>
+                    <a href="https://stremio.com" target="_blank">Stremio</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

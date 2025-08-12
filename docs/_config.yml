@@ -1,0 +1,40 @@
+# GitHub Pages configuration
+# This file ensures the site is built and deployed correctly
+
+# Basic settings
+title: "CineCalidad Stremio Addon"
+description: "Addon de Stremio para streaming de películas desde CineCalidad"
+url: "https://rxb3rth.github.io"
+baseurl: "/cinecalidad-stremio-addon"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins (GitHub Pages supported)
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+
+# Include files that start with dots
+include:
+  - .htaccess
+
+# Collections and defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
