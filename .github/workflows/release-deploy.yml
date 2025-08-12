@@ -1,0 +1,216 @@
+name: Release and Deploy
+
+on:
+  release:
+    types: [published, created]
+  workflow_dispatch:
+    inputs:
+      deploy_environment:
+        description: 'Deploy environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+
+jobs:
+  release-info:
+    name: Release Information
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.info.outputs.tag }}
+      version: ${{ steps.info.outputs.version }}
+      is_prerelease: ${{ steps.info.outputs.is_prerelease }}
+    
+    steps:
+    - name: Get release information
+      id: info
+      run: |
+        if [ "${{ github.event_name }}" == "release" ]; then
+          echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          echo "version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          echo "is_prerelease=${{ github.event.release.prerelease }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=manual-deploy" >> $GITHUB_OUTPUT
+          echo "version=manual-$(date +%s)" >> $GITHUB_OUTPUT
+          echo "is_prerelease=false" >> $GITHUB_OUTPUT
+        fi
+
+  test-and-build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    needs: release-info
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'pnpm'
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+        
+    - name: Install dependencies
+      run: pnpm install --no-frozen-lockfile
+      
+    - name: Run comprehensive tests
+      run: |
+        echo "🧪 Running test suite..."
+        pnpm run validate
+        
+        echo "🔍 Running metadata tests..."
+        pnpm run test:meta
+        
+        echo "📊 Generating coverage report..."
+        pnpm run test:coverage
+        
+    - name: Build application
+      run: |
+        echo "🏗️ Building application for deployment..."
+        pnpm run build:netlify
+        
+    - name: Verify build
+      run: |
+        echo "✅ Verifying build artifacts..."
+        if [ ! -d "netlify-deploy" ]; then
+          echo "❌ Build failed: netlify-deploy directory not found"
+          exit 1
+        fi
+        
+        if [ ! -f "netlify-deploy/index.js" ]; then
+          echo "❌ Build failed: main entry point not found"
+          exit 1
+        fi
+        
+        if [ ! -f "netlify-deploy/package.json" ]; then
+          echo "❌ Build failed: package.json not found"
+          exit 1
+        fi
+        
+        echo "✅ Build verification successful"
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: netlify-build-${{ needs.release-info.outputs.version }}
+        path: netlify-deploy/
+        retention-days: 30
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [release-info, test-and-build]
+    if: needs.release-info.outputs.is_prerelease == 'false'
+    
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: netlify-build-${{ needs.release-info.outputs.version }}
+        path: build/
+        
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli@latest
+      
+    - name: Deploy to Netlify Production
+      id: deploy
+      run: |
+        echo "🚀 Deploying to Netlify production..."
+        
+        DEPLOY_OUTPUT=$(netlify deploy \
+          --dir=build \
+          --prod \
+          --site=${{ secrets.NETLIFY_SITE_ID }} \
+          --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+          --message="Release ${{ needs.release-info.outputs.tag }} - Production Deploy" \
+          --json)
+        
+        DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | jq -r '.deploy_url // .url')
+        
+        echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+        echo "🎉 Production deployment successful!"
+        echo "📍 Live URL: $DEPLOY_URL"
+        
+    - name: Test deployment
+      run: |
+        echo "🔍 Testing deployment..."
+        sleep 30  # Wait for deployment to be fully ready
+        
+        # Test health endpoint
+        HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" "${{ steps.deploy.outputs.url }}/health" || echo "000")
+        
+        if [ "$HTTP_STATUS" -eq 200 ]; then
+          echo "✅ Deployment health check passed"
+        else
+          echo "⚠️ Health check returned status: $HTTP_STATUS"
+          echo "🔍 Deployment may still be initializing..."
+        fi
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [release-info, test-and-build]
+    if: needs.release-info.outputs.is_prerelease == 'true' || github.event.inputs.deploy_environment == 'staging'
+    
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.url }}
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: netlify-build-${{ needs.release-info.outputs.version }}
+        path: build/
+        
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli@latest
+      
+    - name: Deploy to Netlify Staging
+      id: deploy
+      run: |
+        echo "🧪 Deploying to Netlify staging..."
+        
+        DEPLOY_OUTPUT=$(netlify deploy \
+          --dir=build \
+          --site=${{ secrets.NETLIFY_STAGING_SITE_ID || secrets.NETLIFY_SITE_ID }} \
+          --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+          --message="Release ${{ needs.release-info.outputs.tag }} - Staging Deploy" \
+          --json)
+        
+        DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | jq -r '.deploy_url // .url')
+        
+        echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+        echo "🎉 Staging deployment successful!"
+        echo "📍 Staging URL: $DEPLOY_URL"
+
+  notify-success:
+    name: Notify Success
+    runs-on: ubuntu-latest
+    needs: [release-info, deploy-production, deploy-staging]
+    if: always() && (needs.deploy-production.result == 'success' || needs.deploy-staging.result == 'success')
+    
+    steps:
+    - name: Success notification
+      run: |
+        echo "🎉 Deployment completed successfully!"
+        echo "📦 Release: ${{ needs.release-info.outputs.tag }}"
+        
+        if [ "${{ needs.deploy-production.result }}" == "success" ]; then
+          echo "🌐 Production: ${{ needs.deploy-production.outputs.url }}"
+        fi
+        
+        if [ "${{ needs.deploy-staging.result }}" == "success" ]; then
+          echo "🧪 Staging: ${{ needs.deploy-staging.outputs.url }}"
+        fi

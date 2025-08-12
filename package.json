@@ -1,0 +1,82 @@
+{
+  "name": "cinecalidad-stremio-addon",
+  "version": "1.0.0",
+  "description": "A Stremio addon for streaming movies from CineCalidad.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --verbose \"--runInBand\" \"--detectOpenHandles\" \"--forceExit\"",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:meta": "node tests/test-meta-handler.js",
+    "lint": "eslint src/ tests/ lib/ config/ --fix",
+    "lint:check": "eslint src/ tests/ lib/ config/",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "validate": "pnpm run lint:check && pnpm run test",
+    "precommit": "pnpm run validate",
+    "docker:build": "docker build -t cinecalidad-addon .",
+    "docker:run": "docker run -p 7000:7000 cinecalidad-addon",
+    "build": "pnpm run build:netlify",
+    "build:netlify": "bash scripts/deploy-netlify.sh",
+    "deploy:netlify": "netlify deploy --prod --dir=netlify-deploy",
+    "deploy:preview": "netlify deploy --dir=netlify-deploy",
+    "release": "pnpm run build && pnpm run deploy:netlify"
+  },
+  "keywords": [
+    "stremio",
+    "addon",
+    "local-files",
+    "streaming"
+  ],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "dependencies": {
+    "@netlify/functions": "^4.2.1",
+    "better-sqlite3": "^12.2.0",
+    "cheerio": "^1.1.2",
+    "express": "^5.1.0",
+    "mime-types": "^2.1.35",
+    "name-to-imdb": "^3.0.4",
+    "node-fetch": "^2.7.0",
+    "parse-torrent": "9.1.5",
+    "parse-torrent-title": "^1.4.0",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7",
+    "stremio-addon-sdk": "^1.6.10"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^53.0.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "lib/**/*.js",
+      "!src/**/*.test.js",
+      "!**/__tests__/**"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ]
+  }
+}
