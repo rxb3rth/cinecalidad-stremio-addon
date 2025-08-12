@@ -17,11 +17,8 @@
     "precommit": "pnpm run validate",
     "docker:build": "docker build -t cinecalidad-addon .",
     "docker:run": "docker run -p 7000:7000 cinecalidad-addon",
-    "build": "pnpm run build:netlify",
-    "build:netlify": "bash scripts/deploy-netlify.sh",
-    "deploy:netlify": "netlify deploy --prod --dir=netlify-deploy",
-    "deploy:preview": "netlify deploy --dir=netlify-deploy",
-    "release": "pnpm run build && pnpm run deploy:netlify"
+    "build": "echo 'No build step required'",
+    "release": "echo 'Ready for deployment'"
   },
   "keywords": [
     "stremio",
@@ -36,7 +33,6 @@
     "pnpm": ">=8.0.0"
   },
   "dependencies": {
-    "@netlify/functions": "^4.2.1",
     "better-sqlite3": "^12.2.0",
     "cheerio": "^1.1.2",
     "express": "^5.1.0",

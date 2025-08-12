@@ -3,12 +3,7 @@
 /data/
 data/
 data/*
-# Local Netlify folder
-.netlify
-
 # Build and deployment directories  
-netlify-deploy/
-netlify-build/
 dist/
 
 # Environment files
