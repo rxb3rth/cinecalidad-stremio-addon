@@ -57,6 +57,29 @@ The following environment variables can be configured:
 
 The Docker image is automatically built and pushed to GitHub Container Registry using GitHub Actions.
 
+### Making the Image Public
+
+By default, GitHub Container Registry images are **private**. To make your image public so anyone can pull it without authentication:
+
+#### Option 1: Automatic (Recommended)
+The GitHub Actions workflows are configured to automatically make the package public after each build.
+
+#### Option 2: Manual via GitHub Web Interface
+1. Go to your repository on GitHub
+2. Click the "Packages" tab
+3. Click on your package
+4. Go to "Package settings" 
+5. In "Danger Zone" → "Change package visibility" → Select "Public"
+
+#### Option 3: Using Scripts
+```bash
+# Using bash script
+./scripts/make-package-public.sh [YOUR_GITHUB_TOKEN]
+
+# Using PowerShell (Windows)
+.\scripts\make-package-public.ps1 [YOUR_GITHUB_TOKEN]
+```
+
 ### GitHub Actions Workflows
 
 Two workflows are available:
@@ -64,7 +87,7 @@ Two workflows are available:
 1. **`docker.yml`** - Full workflow with build attestations and security features
 2. **`docker-simple.yml`** - Simplified workflow without attestations (backup option)
 
-The main workflow includes attestations for supply chain security but requires specific repository permissions. If you encounter ID token issues, the simple workflow provides a reliable fallback.
+Both workflows now automatically set the package visibility to public after successful builds.
 
 ### Available Tags
 
