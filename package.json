@@ -17,6 +17,10 @@
     "precommit": "pnpm run validate",
     "docker:build": "docker build -t cinecalidad-addon .",
     "docker:run": "docker run -p 7000:7000 cinecalidad-addon",
+    "docker:build-multi": "docker buildx build --platform linux/amd64,linux/arm64 -t cinecalidad-addon .",
+    "docker:compose:up": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down",
+    "docker:compose:logs": "docker-compose logs -f",
     "build": "echo 'No build step required'",
     "release": "echo 'Ready for deployment'"
   },
