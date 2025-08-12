@@ -51,6 +51,7 @@ pnpm run docker:run
 The following environment variables can be configured:
 
 - `PORT` - Server port (default: 7000)
+- `HOST` - Server host (default: 0.0.0.0 for external access)
 - `NODE_ENV` - Node environment (default: production)
 
 ## GitHub Container Registry

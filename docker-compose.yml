@@ -8,6 +8,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=7000
+      - HOST=0.0.0.0
     # volumes:
       # Uncomment the following lines if you want to persist data
       # - ./data:/app/data

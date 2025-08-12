@@ -5,7 +5,7 @@ const config = {
   // Server configuration
   server: {
     port: Number(process.env.PORT) || 7000,
-    host: "127.0.0.1",
+    host: process.env.HOST || "0.0.0.0", // Allow external connections in production
   },
 
   // CineCalidad configuration
