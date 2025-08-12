@@ -21,8 +21,6 @@
     "docker:compose:up": "docker-compose up -d",
     "docker:compose:down": "docker-compose down",
     "docker:compose:logs": "docker-compose logs -f",
-    "docker:make-public": "node -e \"require('child_process').exec('powershell -ExecutionPolicy Bypass -File ./scripts/make-package-public.ps1', (e,s,se) => console.log(s||se))\"",
-    "docker:make-public:bash": "bash ./scripts/make-package-public.sh",
     "build": "echo 'No build step required'",
     "release": "echo 'Ready for deployment'"
   },

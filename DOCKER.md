@@ -61,33 +61,20 @@ The Docker image is automatically built and pushed to GitHub Container Registry 
 
 By default, GitHub Container Registry images are **private**. To make your image public so anyone can pull it without authentication:
 
-#### Option 1: Automatic (Recommended)
-The GitHub Actions workflows are configured to automatically make the package public after each build.
-
-#### Option 2: Manual via GitHub Web Interface
+#### Manual via GitHub Web Interface (Recommended)
 1. Go to your repository on GitHub
-2. Click the "Packages" tab
-3. Click on your package
+2. Click the "Packages" tab or visit: https://github.com/rxb3rth/cinecalidad-stremio-addon/packages
+3. Click on your package "cinecalidad-stremio-addon"
 4. Go to "Package settings" 
 5. In "Danger Zone" → "Change package visibility" → Select "Public"
 
-#### Option 3: Using Scripts
-```bash
-# Using bash script
-./scripts/make-package-public.sh [YOUR_GITHUB_TOKEN]
+### GitHub Actions Workflow
 
-# Using PowerShell (Windows)
-.\scripts\make-package-public.ps1 [YOUR_GITHUB_TOKEN]
-```
-
-### GitHub Actions Workflows
-
-Two workflows are available:
-
-1. **`docker.yml`** - Full workflow with build attestations and security features
-2. **`docker-simple.yml`** - Simplified workflow without attestations (backup option)
-
-Both workflows now automatically set the package visibility to public after successful builds.
+The `build.yml` workflow:
+- Automatically builds on pushes to main branch
+- Creates Docker images with proper tags
+- Pushes to GitHub Container Registry
+- Simple and reliable without complex features
 
 ### Available Tags
 
@@ -220,21 +207,6 @@ spec:
    pnpm install
    git add pnpm-lock.yaml
    git commit -m "update lockfile"
-   ```
-
-5. **GitHub Actions ID token issues**
-   ```bash
-   # If the main workflow fails with ID token errors, the repository may need:
-   # - Actions permissions to be enabled in repository settings
-   # - Attestations to be enabled in repository security settings
-   # - Or use the simplified workflow without attestations
-   ```
-
-6. **Repository permissions for attestations**
-   ```bash
-   # To enable attestations, ensure your repository has:
-   # - Settings > Actions > General > Workflow permissions set to "Read and write"
-   # - Settings > Code security and analysis > Attestations enabled
    ```
 
 ### Logs
