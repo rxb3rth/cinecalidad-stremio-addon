@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Image (Simple)
 
 on:
   push:
@@ -21,8 +21,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write  # Required for attestations
-      attestations: write
 
     steps:
       - name: Checkout repository
@@ -53,7 +51,6 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
-        id: build
         with:
           context: .
           platforms: linux/amd64,linux/arm64
@@ -62,12 +59,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Generate artifact attestation
-        if: github.event_name != 'pull_request'
-        uses: actions/attest-build-provenance@v1
-        continue-on-error: true  # Don't fail the entire workflow if attestation fails
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-          subject-digest: ${{ steps.build.outputs.digest }}
-          push-to-registry: true
