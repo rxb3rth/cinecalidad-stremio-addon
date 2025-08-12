@@ -1,16 +1,16 @@
 {
-    "name": "CineCalidad Stremio Addon",
-    "short_name": "CineCalidad",
-    "description": "Addon de Stremio para streaming de películas desde CineCalidad",
+    "name": "Addon de Cinecalidad para Stremio",
+    "short_name": "Cinecalidad",
+    "description": "Addon de Stremio para transmisión de películas desde Cinecalidad en español",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#141414",
-    "theme_color": "#e50914",
+    "background_color": "#FFFFFF",
+    "theme_color": "#1DD1A1",
     "icons": [
         {
-            "src": "assets/favicon.svg",
-            "sizes": "32x32",
-            "type": "image/svg+xml"
+            "src": "https://raw.githubusercontent.com/rxb3rth/cinecalidad-stremio-addon/refs/heads/main/logo.png",
+            "sizes": "32x32 64x64 128x128 256x256",
+            "type": "image/png"
         }
     ],
     "categories": [

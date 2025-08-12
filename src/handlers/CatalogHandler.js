@@ -1,6 +1,6 @@
 /**
- * @file Catalog Handler for CineCalidad Stremio addon
- * @author CineCalidad Team
+ * @file Catalog Handler for Cinecalidad Stremio addon
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 
@@ -19,7 +19,7 @@ class CatalogHandler {
   /**
    * @param {object} dependencies - Injected dependencies
    * @param {object} dependencies.database - Database instance
-   * @param {object} dependencies.cineCalidadService - CineCalidad service instance
+   * @param {object} dependencies.cineCalidadService - Cinecalidad service instance
    */
   constructor(dependencies) {
     this.database = dependencies.database;
@@ -166,17 +166,17 @@ class CatalogHandler {
   }
 
   /**
-   * Fetch releases from CineCalidad service
+   * Fetch releases from Cinecalidad service
    * @private
    * @param {object} query - Query parameters
    * @returns {Promise<Array>} Array of releases
    */
   async _fetchReleases(query) {
     try {
-      logger.debug("Fetching catalog data from CineCalidad", { query });
+      logger.debug("Fetching catalog data from Cinecalidad", { query });
       return await this.cineCalidadService.performQuery(query);
     } catch (error) {
-      logger.error("Failed to fetch releases from CineCalidad", {
+      logger.error("Failed to fetch releases from Cinecalidad", {
         error: error.message,
         query,
       });
@@ -318,7 +318,7 @@ class CatalogHandler {
       parts.push(`Size: ${sizeGB}GB`);
     }
 
-    return parts.join(" | ") || "Movie from CineCalidad";
+    return parts.join(" | ") || "Movie from Cinecalidad";
   }
 
   /**

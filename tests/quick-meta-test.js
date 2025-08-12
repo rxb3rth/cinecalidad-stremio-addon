@@ -21,12 +21,12 @@ class QuickMetaTest {
         type: "imdb",
       },
       {
-        name: "CineCalidad ID - Recent Movie",
+        name: "Cinecalidad ID - Recent Movie",
         id: "cc_barbie-2023-online-descarga",
         type: "cinecalidad",
       },
       {
-        name: "CineCalidad ID - Another Movie",
+        name: "Cinecalidad ID - Another Movie",
         id: "cc_avatar-el-camino-del-agua-online-descarga",
         type: "cinecalidad",
       },
@@ -130,10 +130,10 @@ class QuickMetaTest {
         console.log(`   📄 Response: ${JSON.stringify(data, null, 2)}`);
         console.log("");
 
-        // For CineCalidad IDs, this might be expected if movie doesn't exist
+        // For Cinecalidad IDs, this might be expected if movie doesn't exist
         if (type === "cinecalidad") {
           console.log(
-            "   ℹ️  This is acceptable for CineCalidad IDs (movie might not exist)\n",
+            "   ℹ️  This is acceptable for Cinecalidad IDs (movie might not exist)\n",
           );
           return true;
         }

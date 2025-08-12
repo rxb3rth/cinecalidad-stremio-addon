@@ -1,7 +1,7 @@
 {
   "name": "cinecalidad-stremio-addon",
   "version": "1.0.0",
-  "description": "A Stremio addon for streaming movies from CineCalidad.",
+  "description": "A Stremio addon for streaming movies from Cinecalidad.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

@@ -1,6 +1,6 @@
 /**
  * @fileoverview Main application entry point
- * @author CineCalidad Team
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 
@@ -28,7 +28,7 @@ class CineCalidadApp {
    */
   async start() {
     try {
-      logger.info("Starting CineCalidad Stremio Addon...");
+      logger.info("Starting Cinecalidad Stremio Addon...");
 
       await this._initializeAddon();
       this._setupMiddleware();

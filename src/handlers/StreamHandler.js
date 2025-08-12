@@ -1,6 +1,6 @@
 /**
- * @file Stream Handler for CineCalidad Stremio addon
- * @author CineCalidad Team
+ * @file Stream Handler for Cinecalidad Stremio addon
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 
@@ -152,7 +152,7 @@ class StreamHandler {
   }
 
   /**
-   * Fetch movie data from CineCalidad service
+   * Fetch movie data from Cinecalidad service
    * @private
    * @param {string} id - Movie ID
    * @returns {Promise<object | null>} Movie data
@@ -205,9 +205,9 @@ class StreamHandler {
   }
 
   /**
-   * Find CineCalidad release
+   * Find Cinecalidad release
    * @private
-   * @param {string} id - CineCalidad ID
+   * @param {string} id - Cinecalidad ID
    * @returns {Promise<object | null>} Release object
    */
   async _findCineCalidadRelease(id) {
@@ -389,7 +389,7 @@ class StreamHandler {
       const bingeGroupId = this._getBingeGroupId(movieData, id);
 
       return {
-        name: `📥 CineCalidad ${quality} - Download`,
+        name: `📥 Cinecalidad ${quality} - Download`,
         description: link.name || "Download",
         externalUrl: link.url,
         behaviorHints: {

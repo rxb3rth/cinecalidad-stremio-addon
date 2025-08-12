@@ -1,6 +1,6 @@
 /**
  * @file Main Stremio addon implementation
- * @author CineCalidad Team
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 
@@ -79,7 +79,7 @@ class DependencyContainer {
       const database = getDatabase();
       this._dependencies.set("database", database);
 
-      // Initialize CineCalidad service
+      // Initialize Cinecalidad service
       const cineCalidadService = new CineCalidadService({
         siteLink: config.cinecalidad.siteLink,
         maxLatestPageLimit: config.cinecalidad.maxLatestPageLimit,
@@ -162,7 +162,7 @@ class CineCalidadAddon {
       this._setupGracefulShutdown();
       this._buildAddon();
 
-      logger.info("CineCalidad addon initialized successfully");
+      logger.info("Cinecalidad addon initialized successfully");
     } catch (error) {
       logger.error("Failed to initialize addon", { error: error.message });
       throw error;

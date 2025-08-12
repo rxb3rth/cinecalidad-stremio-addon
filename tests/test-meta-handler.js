@@ -229,7 +229,7 @@ class MetaHandlerTestSuite {
     await this.testIMDBIdSuccess();
     await this.testIMDBIdNotFound();
 
-    // Test CineCalidad ID handling
+    // Test Cinecalidad ID handling
     await this.testCineCalidadIdFromDatabase();
     await this.testCineCalidadIdFromCatalog();
     await this.testCineCalidadIdScraping();
@@ -353,7 +353,7 @@ class MetaHandlerTestSuite {
   }
 
   async testCineCalidadIdFromDatabase() {
-    await this.runTest("CineCalidad ID - From Database", async () => {
+    await this.runTest("Cinecalidad ID - From Database", async () => {
       // Setup database with existing movie - use correct structure with meta wrapper
       this.database.saveMovie("cc_test-movie-2023", {
         meta: {
@@ -383,7 +383,7 @@ class MetaHandlerTestSuite {
   }
 
   async testCineCalidadIdFromCatalog() {
-    await this.runTest("CineCalidad ID - From Catalog", async () => {
+    await this.runTest("Cinecalidad ID - From Catalog", async () => {
       // Setup catalog data with proper structure - key should match what findMovieByOriginalId looks for
       this.database.saveMovie("cc_test-catalog-movie-2023", {
         release: {
@@ -423,7 +423,7 @@ class MetaHandlerTestSuite {
   }
 
   async testCineCalidadIdScraping() {
-    await this.runTest("CineCalidad ID - Scraping Fallback", async () => {
+    await this.runTest("Cinecalidad ID - Scraping Fallback", async () => {
       // Setup mocks for scraping
       this.cineCalidadService.setMockReleases([
         {
@@ -473,7 +473,7 @@ class MetaHandlerTestSuite {
   }
 
   async testCineCalidadIdNotFound() {
-    await this.runTest("CineCalidad ID - Not Found", async () => {
+    await this.runTest("Cinecalidad ID - Not Found", async () => {
       // Setup empty responses
       this.cineCalidadService.setMockReleases([]);
 

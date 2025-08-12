@@ -1,6 +1,6 @@
-# CineCalidad Stremio Addon
+# Cinecalidad Stremio Addon
 
-A Stremio addon for streaming movies from CineCalidad.
+A Stremio addon for streaming movies from Cinecalidad.
 
 [![CI/CD Pipeline](https://github.com/rxb3rth/cinecalidad-stremio-addon/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/rxb3rth/cinecalidad-stremio-addon/actions/workflows/ci-cd.yml)
 [![Release and Deploy](https://github.com/rxb3rth/cinecalidad-stremio-addon/actions/workflows/release-deploy.yml/badge.svg)](https://github.com/rxb3rth/cinecalidad-stremio-addon/actions/workflows/release-deploy.yml)
@@ -122,7 +122,7 @@ const config = {
 
 ### Movie ID Formats
 
-- **CineCalidad Movies**: `cc_{movieId}`
+- **Cinecalidad Movies**: `cc_{movieId}`
 - **IMDB Movies**: `tt{imdbId}`
 
 ## 🧪 Testing
@@ -219,7 +219,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Stremio team for the excellent addon SDK
-- CineCalidad for the movie content
+- Cinecalidad for the movie content
 - Contributors and testers
 
 ---

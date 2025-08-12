@@ -4,8 +4,8 @@ const nameToImdb = require("name-to-imdb");
 const logger = require("../lib/logger");
 
 /**
- * CineCalidad Service - Inspired by Jackett's CCServerService.cs
- * Provides structured scraping and content management for CineCalidad
+ * Cinecalidad Service - Inspired by Jackett's CCServerService.cs
+ * Provides structured scraping and content management for Cinecalidad
  */
 class CineCalidadService {
   constructor(options = {}) {

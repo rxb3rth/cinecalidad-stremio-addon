@@ -183,7 +183,7 @@ class MetaHandler {
   }
 
   /**
-   * Handle CineCalidad ID requests
+   * Handle Cinecalidad ID requests
    * @param id
    * @param context
    * @private
@@ -192,7 +192,7 @@ class MetaHandler {
     const movieId = id.replace("cc_", "");
     context.movieId = movieId;
 
-    logger.debug("Processing CineCalidad ID request", context);
+    logger.debug("Processing Cinecalidad ID request", context);
 
     try {
       // Try database first
@@ -215,7 +215,7 @@ class MetaHandler {
 
       return null;
     } catch (error) {
-      logger.error("Failed to process CineCalidad ID", {
+      logger.error("Failed to process Cinecalidad ID", {
         ...context,
         error: error.message,
       });

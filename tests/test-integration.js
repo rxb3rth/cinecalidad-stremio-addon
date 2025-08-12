@@ -38,7 +38,7 @@ class IntegrationTestSuite {
     // Test real IMDB ID
     await this.testRealIMDBId();
 
-    // Test real CineCalidad ID that exists
+    // Test real Cinecalidad ID that exists
     await this.testRealCineCalidadId();
 
     // Test performance with multiple requests
@@ -114,8 +114,8 @@ class IntegrationTestSuite {
   }
 
   async testRealCineCalidadId() {
-    await this.runTest("Real CineCalidad ID - Scraping Test", async () => {
-      // Test with a movie that likely exists on CineCalidad
+    await this.runTest("Real Cinecalidad ID - Scraping Test", async () => {
+      // Test with a movie that likely exists on Cinecalidad
       const result = await this.metaHandler.handle({
         type: "movie",
         id: "cc_barbie-2023-online-descarga",

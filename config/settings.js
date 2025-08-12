@@ -8,7 +8,7 @@ const config = {
     host: process.env.HOST || "0.0.0.0", // Allow external connections in production
   },
 
-  // CineCalidad configuration
+  // Cinecalidad configuration
   cinecalidad: {
     siteLink: "https://www.cinecalidad.rs",
     maxLatestPageLimit: 3,
@@ -24,9 +24,9 @@ const config = {
   addon: {
     id: "org.cinecalidad.addon",
     version: "1.0.0",
-    name: "CineCalidad Movies",
+    name: "Películas de Cinecalidad",
     description:
-      "Cinecalidad is a Public site for Películas Full UHD/HD en Latino Dual.",
+      "Cinecalidad es un sitio público para Películas Full UHD/HD en Latino Dual.",
     resources: ["stream", "meta", "catalog"],
     types: ["movie"],
     idPrefixes: ["cc_", "tt"],
@@ -56,14 +56,14 @@ function getManifest() {
     version: config.addon.version,
     name: config.addon.name,
     description: config.addon.description,
-    logo: "https://www.stremio.com/website/stremio-logo-small.png",
+    logo: "https://raw.githubusercontent.com/rxb3rth/cinecalidad-stremio-addon/refs/heads/main/logo.png",
     resources: config.addon.resources,
     types: config.addon.types,
     catalogs: [
       {
         type: "movie",
         id: "cinecalidad-latest",
-        name: "CineCalidad Latest Movies",
+        name: "Últimas Películas de Cinecalidad",
         extra: [
           { name: "search", isRequired: false },
           { name: "skip", isRequired: false },
@@ -72,7 +72,7 @@ function getManifest() {
       {
         type: "movie",
         id: "cinecalidad-search",
-        name: "CineCalidad Search",
+        name: "Búsqueda en Cinecalidad",
         extra: [
           { name: "search", isRequired: true },
           { name: "skip", isRequired: false },

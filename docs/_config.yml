@@ -2,8 +2,8 @@
 # This file ensures the site is built and deployed correctly
 
 # Basic settings
-title: "CineCalidad Stremio Addon"
-description: "Addon de Stremio para streaming de películas desde CineCalidad"
+title: "Cinecalidad Stremio Addon"
+description: "Addon de Stremio para streaming de películas desde Cinecalidad"
 url: "https://rxb3rth.github.io"
 baseurl: "/cinecalidad-stremio-addon"
 

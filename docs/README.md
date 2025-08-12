@@ -1,6 +1,6 @@
-# CineCalidad Stremio Addon - Página de Configuración
+# Cinecalidad Stremio Addon - Página de Configuración
 
-Esta es la página web oficial para configurar el addon de CineCalidad para Stremio.
+Esta es la página web oficial para configurar el addon de Cinecalidad para Stremio.
 
 ## 🌐 URL de la Página
 
@@ -62,7 +62,7 @@ docs/
 ├── js/
 │   └── main.js         # Funcionalidad JavaScript
 └── assets/
-    └── favicon.svg     # Icono del sitio
+    └── logo.png        # Logo del addon (desde repositorio)
 ```
 
 ## 🔧 Personalización

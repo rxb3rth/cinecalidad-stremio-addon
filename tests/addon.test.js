@@ -1,6 +1,6 @@
 /**
- * @file Test suite for CineCalidad addon
- * @author CineCalidad Team
+ * @file Test suite for Cinecalidad addon
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 
@@ -11,7 +11,7 @@ const CatalogHandler = require("../src/handlers/CatalogHandler");
 const StreamHandler = require("../src/handlers/StreamHandler");
 const MetaHandler = require("../src/handlers/MetaHandler");
 
-describe("CineCalidad Addon Architecture", () => {
+describe("Cinecalidad Addon Architecture", () => {
   let addon;
 
   beforeEach(async () => {

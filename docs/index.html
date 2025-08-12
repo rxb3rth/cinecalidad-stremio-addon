@@ -4,45 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineCalidad - Stremio Addon</title>
-    <meta name="description" content="Addon de Stremio para streaming de películas desde CineCalidad">
+    <title>Cinecalidad - Stremio Addon</title>
+    <meta name="description" content="Addon de Stremio para streaming de películas desde Cinecalidad">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" href="assets/favicon.ico">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#e50914">
+    <meta name="theme-color" content="#1DD1A1">
 </head>
 
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                <h1>🎬 CineCalidad</h1>
-                <p>Addon de Stremio</p>
-            </div>
-        </header>
+    <!-- Background Pattern -->
+    <div class="background-pattern"></div>
 
-        <main class="main">
-            <section class="addon-info">
-                <div class="addon-icon">
-                    🎬
-                </div>
-                <h1 class="addon-title">CineCalidad</h1>
-                <p class="addon-version">1.0.0</p>
-                <p class="addon-description">
-                    <span class="status-indicator" id="serverStatus">Verificando...</span>
-                </p>
-                <a href="stremio://cinecalidad-stremio-addon-latest.onrender.com/manifest.json" class="install-btn">
-                    INSTALAR
+    <div class="container">
+        <!-- Navigation Header -->
+        <nav class="nav">
+            <div class="nav-brand">
+                <img src="https://raw.githubusercontent.com/rxb3rth/cinecalidad-stremio-addon/refs/heads/main/logo.png"
+                    alt="Cinecalidad Logo" class="nav-logo">
+                <span class="nav-title">Cinecalidad</span>
+            </div>
+            <div class="nav-links">
+                <a href="https://github.com/rxb3rth/cinecalidad-stremio-addon" target="_blank" class="nav-link">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    GitHub
                 </a>
-            </section>
+                <a href="https://stremio.com" target="_blank" class="nav-link">Stremio</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <main class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="status-indicator" id="serverStatus">Verificando estado...</span>
+                </div>
+
+                <h1 class="hero-title">Cinecalidad</h1>
+                <p class="hero-subtitle">Addon de Stremio para películas en alta calidad</p>
+                <p class="hero-version">Versión 1.0.0</p>
+
+                <div class="hero-actions">
+                    <a href="stremio://cinecalidad-stremio-addon-latest.onrender.com/manifest.json"
+                        class="install-btn primary">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                        </svg>
+                        Instalar Addon
+                    </a>
+                    <button class="install-btn secondary" onclick="copyManifestUrl()">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                            <path
+                                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                        </svg>
+                        Copiar URL
+                    </button>
+                </div>
+            </div>
         </main>
 
+        <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p>&copy; <span id="currentYear"></span> CineCalidad Stremio Addon.</p>
-                <div class="footer-links">
-                    <a href="https://github.com/rxb3rth/cinecalidad-stremio-addon" target="_blank">GitHub</a>
-                    <a href="https://stremio.com" target="_blank">Stremio</a>
+                <div class="footer-info">
+                    <p>&copy; <span id="currentYear"></span> Cinecalidad Stremio Addon</p>
+                    <p class="footer-disclaimer">Este addon utiliza contenido público disponible en Cinecalidad</p>
                 </div>
             </div>
         </footer>
@@ -50,7 +84,10 @@
 
     <!-- Toast notification -->
     <div id="toast" class="toast">
-        <span id="toastMessage"></span>
+        <div class="toast-content">
+            <span id="toastMessage"></span>
+            <button class="toast-close" onclick="hideToast()">×</button>
+        </div>
     </div>
 
     <script src="js/main.js"></script>

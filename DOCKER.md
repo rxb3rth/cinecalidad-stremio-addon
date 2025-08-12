@@ -1,6 +1,6 @@
 # Docker Usage
 
-This document explains how to build, run, and deploy the CineCalidad Stremio Addon using Docker.
+This document explains how to build, run, and deploy the Cinecalidad Stremio Addon using Docker.
 
 ## Quick Start
 

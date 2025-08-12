@@ -1,6 +1,6 @@
 /**
  * @file Torrent Information Service
- * @author CineCalidad Team
+ * @author Cinecalidad Team
  * @version 1.0.0
  */
 

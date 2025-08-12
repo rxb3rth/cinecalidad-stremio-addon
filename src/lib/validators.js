@@ -20,7 +20,7 @@ function validateMovieId(id) {
     return /^tt\d{7,}$/.test(id);
   }
 
-  // CineCalidad ID format: cc_ followed by movie slug
+  // Cinecalidad ID format: cc_ followed by movie slug
   if (id.startsWith("cc_")) {
     const movieId = id.substring(3);
     return /^[a-z0-9-]+$/.test(movieId) && movieId.length > 0;
@@ -219,12 +219,12 @@ function validateConfig(config) {
     };
   }
 
-  // Validate CineCalidad config
+  // Validate Cinecalidad config
   if (config.cinecalidad) {
     const cc = config.cinecalidad;
 
     if (!validateUrl(cc.siteLink)) {
-      throw new ValidationError("CineCalidad siteLink must be a valid URL");
+      throw new ValidationError("Cinecalidad siteLink must be a valid URL");
     }
 
     validated.cinecalidad = {
