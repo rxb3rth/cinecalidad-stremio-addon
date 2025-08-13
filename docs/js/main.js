@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    SERVER_URL: 'https://cinecalidad-stremio-addon-latest.onrender.com',
+    SERVER_URL: 'https://cinecalidad-stremio-addon.fly.dev',
     MANIFEST_PATH: '/manifest.json'
 };
 
